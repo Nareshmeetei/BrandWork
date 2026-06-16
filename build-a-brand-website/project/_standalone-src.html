@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<script src="./image-slot.js"></script>
+</head>
+<body>
+<template id="__bundler_thumbnail" data-bg-color="#1A150F">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#1A150F"/>
+    <g transform="translate(600,330)" stroke="#EE6158" stroke-width="24" stroke-linecap="round" fill="none">
+      <path d="M0 -150 V150 M-130 -75 L130 75 M130 -75 L-130 75"/>
+    </g>
+    <text x="600" y="600" font-family="Georgia, serif" font-size="92" fill="#F0EAE0" text-anchor="middle">Brandio</text>
+  </svg>
+</template>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Hanken+Grotesk:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; }
+  :root { --accent: #EE6158; --ink: #1A150F; --paper: #F0EAE0; }
+  ::selection { background: var(--accent); color: #F0EAE0; }
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  .chev { transition: transform .35s cubic-bezier(.2,.7,.2,1); flex-shrink: 0; }
+  details[open] > summary .chev { transform: rotate(90deg); }
+  details[open] .acc-body { animation: accIn .45s cubic-bezier(.2,.7,.2,1); }
+  @keyframes accIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+  /* image-slot is created by the runtime; its shadow :host defaults to 240x160.
+     Inline styles can't reach the host box, so size this specific slot to a true square. */
+  image-slot#founder { display: block; width: 240px; height: 240px; margin: 0 auto; }
+</style>
+</helmet>
+
+<div style="background: var(--paper); color: var(--ink); font-family: 'Hanken Grotesk', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; min-height: 100vh;">
+
+  <nav data-nav="" style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 18px clamp(20px, 5vw, 64px); border-bottom: 1px solid transparent; transition: background .35s ease, border-color .35s ease;">
+    <a href="#top" style="display: flex; align-items: center; gap: 11px; text-decoration: none; color: var(--ink);">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.9" stroke-linecap="round" style="width: 44px; height: 44px"><path d="M12 3v18M3.8 7.5l16.4 9M20.2 7.5L3.8 16.5"></path></svg>
+      <span style="font-family: 'Instrument Serif', serif; font-size: 31px; letter-spacing: .2px; width: 98px; height: 41px">BrandWork</span>
+    </a>
+    <a href="https://cal.com/nareshmeetei/15min" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--ink); text-decoration: none; padding: 9px 4px; border-bottom: 1.5px solid var(--ink); transition: color .25s ease, border-color .25s ease;" style-hover="color: var(--accent); border-color: var(--accent);">
+      Let's Talk. Book a Call
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+    </a>
+  </nav>
+
+  <span id="top"></span>
+
+  <!-- HERO: MONUMENT -->
+  <sc-if value="{{ showMonument }}" hint-placeholder-val="{{ true }}">
+  <header style="padding: clamp(128px, 19vh, 210px) clamp(20px, 5vw, 64px) clamp(56px, 9vh, 110px);">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h1 data-reveal="" style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(54px, 10.5vw, 162px); line-height: 0.92; letter-spacing: -0.02em; margin: 0; padding-bottom: 0.14em; max-width: 14ch;">
+        Build a brand people&nbsp;<span style="font-style: italic; color: rgb(26, 21, 15);"></span><span style="font-style: italic; letter-spacing: -2.5116px;">remember</span></h1>
+      <div data-reveal="" style="display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(28px, 5vw, 72px); align-items: end; margin-top: clamp(40px, 6vh, 72px);">
+        <div>
+          <p style="font-family: Hanken Grotesk; font-size: clamp(22px, 2.4vw, 32px); line-height: 1.2; margin: 0 0 18px; position: static; width: 828px">Stop looking like every other local business.</p>
+          <p style="font-size: clamp(16px, 1.4vw, 19px); line-height: 1.55; margin: 0 0 18px; opacity: .8; max-width: 700px; width: 700px">Get professional, powerful branding that makes customers:</p>
+          <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px;">
+            <sc-for list="{{ heroPoints }}" as="pt" hint-placeholder-count="3">
+              <li style="display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px 9px 12px; border: 1.5px solid rgba(26,21,15,.2); border-radius: 999px; font-size: 15px; font-weight: 600;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                {{ pt }}
+              </li>
+            </sc-for>
+          </ul>
+        </div>
+        <div style="display: flex; justify-content: flex-start;">
+          <a href="#plans" style="display: inline-flex; align-items: center; gap: 12px; color: var(--paper); text-decoration: none; padding: 17px 26px; border-radius: 999px; font-size: 15px; font-weight: 600; letter-spacing: .02em; transition: transform .25s ease, background .25s ease; background-color: #EE6158" style-hover="transform: translateY(-2px); background: var(--accent);">
+            Choose your plan
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+  </sc-if>
+
+  <!-- HERO: POSTER -->
+  <sc-if value="{{ showPoster }}" hint-placeholder-val="{{ false }}">
+  <header style="padding: clamp(96px, 13vh, 150px) clamp(16px, 3vw, 40px) clamp(40px, 6vh, 80px);">
+    <div style="position: relative; max-width: 1280px; margin: 0 auto; background: var(--ink); color: var(--paper); border-radius: 28px; padding: clamp(48px, 9vw, 116px) clamp(28px, 6vw, 96px); overflow: hidden;">
+      <h1 data-reveal="" style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(48px, 9vw, 146px); line-height: 0.92; letter-spacing: -0.02em; margin: 0; text-align: center;">
+        Build a brand<br>people <span style="font-style: italic; color: var(--accent);">remember.</span>
+      </h1>
+      <p data-reveal="" style="text-align: center; font-family: 'Instrument Serif', serif; font-size: clamp(20px, 2.2vw, 30px); line-height: 1.2; margin: clamp(28px, 5vh, 48px) auto 0;">Stop looking like every other local business.</p>
+      <p data-reveal="" style="text-align: center; font-size: clamp(16px, 1.4vw, 19px); line-height: 1.55; margin: 14px auto 0; opacity: .8;">Get professional, powerful branding that makes customers:</p>
+      <ul data-reveal="" style="list-style: none; margin: 22px 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+        <sc-for list="{{ heroPoints }}" as="pt" hint-placeholder-count="3">
+          <li style="display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px 9px 12px; border: 1.5px solid rgba(240,234,224,.28); border-radius: 999px; font-size: 15px; font-weight: 600;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+            {{ pt }}
+          </li>
+        </sc-for>
+      </ul>
+      <div data-reveal="" style="display: flex; justify-content: center; margin-top: clamp(32px, 5.5vh, 56px);">
+        <a href="#plans" style="display: inline-flex; align-items: center; gap: 12px; background: var(--accent); color: #fff; text-decoration: none; padding: 17px 28px; border-radius: 999px; font-size: 15px; font-weight: 600; letter-spacing: .02em; transition: transform .25s ease;" style-hover="transform: translateY(-2px);">
+          Choose your plan
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+  </sc-if>
+
+  <!-- COST OF BAD BRANDING -->
+  <section style="padding: clamp(70px, 11vh, 150px) clamp(20px, 5vw, 64px); border-top: 1px solid rgba(26,21,15,.14);">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h2 data-reveal="" style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(34px, 5.4vw, 78px); line-height: 1.02; letter-spacing: -0.015em; margin: 0 0 clamp(28px, 4vh, 44px); max-width: 1500px">
+        What's unprofessional branding costing you?
+      </h2>
+      <p data-reveal="" style="font-size: clamp(17px, 1.5vw, 21px); line-height: 1.55; margin: 0 0 clamp(40px, 6vh, 64px); max-width: 1500px; opacity: .85">
+        Most business owners think customers buy based on price. The truth is, customers often decide based on trust.
+      </p>
+
+      <div data-reveal="" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(18px, 2vw, 28px); margin-bottom: clamp(44px, 7vh, 80px);">
+        <sc-for list="{{ stats }}" as="s" hint-placeholder-count="3">
+          <div style="border-top: 2px solid var(--accent); padding-top: 20px;">
+            <div style="font-family: 'Instrument Serif', serif; font-size: clamp(44px, 5vw, 68px); line-height: 1; color: var(--accent);">{{ s.num }}</div>
+            <p style="margin: 14px 0 0; font-size: 16px; line-height: 1.5; opacity: .82;">{{ s.label }}</p>
+          </div>
+        </sc-for>
+      </div>
+
+      <p data-reveal="" style="font-size: clamp(17px, 1.5vw, 21px); line-height: 1.55; margin: 0 0 clamp(36px, 5vh, 56px); max-width: 1000px; opacity: .85">
+        If your logo looks outdated, your social media looks inconsistent, or your business looks similar to everyone else — your potential customers may choose a competitor before they even contact you.
+      </p>
+
+      <div data-reveal="" style="background: var(--ink); color: var(--paper); border-radius: 24px; padding: clamp(32px, 4vw, 56px);">
+        <h3 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(24px, 2.8vw, 38px); line-height: 1.15; margin: 0 0 28px; max-width: 1000px">Every day without a strong brand means you're losing…</h3>
+        <ul style="list-style: none; margin: 0; padding: 0; display: grid; gap: 16px;">
+          <sc-for list="{{ losing }}" as="loss" hint-placeholder-count="5">
+            <li style="display: flex; align-items: flex-start; gap: 14px; font-size: clamp(16px, 1.4vw, 19px); line-height: 1.5;">
+              <span style="flex-shrink: 0; margin-top: 1px; display: inline-flex; width: 24px; height: 24px; border-radius: 999px; align-items: center; justify-content: center; background: rgba(238,97,88,.18); color: var(--accent);">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+              </span>
+              <span style="opacity: .9;">{{ loss }}</span>
+            </li>
+          </sc-for>
+        </ul>
+      </div>
+
+      <p data-reveal="" style="font-family: 'Instrument Serif', serif; font-size: clamp(22px, 3vw, 40px); line-height: 1.2; margin: clamp(40px, 6vh, 64px) 0 0; max-width: 1000px">
+        Your brand is often the first thing people see.&nbsp;</p><div><p style="font-family: Instrument Serif; font-size: clamp(22px, 3vw, 40px); margin-top: 5px; margin-bottom: 5px">Make sure it gives them a reason to <span style="font-style: italic; color: rgb(26, 21, 15);">choose you.</span></p></div><p></p>
+    </div>
+  </section>
+
+  <!-- WHY IT MATTERS -->
+  <section style="padding: clamp(70px, 11vh, 150px) clamp(20px, 5vw, 64px); border-top: 1px solid rgba(26,21,15,.14);">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h2 data-reveal="" style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(34px, 5.4vw, 78px); line-height: 1.02; letter-spacing: -0.015em; margin: 0 0 18px; max-width: 1000px">
+        Why good design &amp; branding matters
+      </h2>
+      <p data-reveal="" style="font-size: clamp(17px, 1.5vw, 21px); line-height: 1.55; margin: 0 0 clamp(40px, 6vh, 68px); max-width: 1000px; opacity: .85">
+        Most customers decide whether to trust a business within seconds. A strong brand helps you:
+      </p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: clamp(18px, 2vw, 26px);">
+        <sc-for list="{{ benefits }}" as="b" hint-placeholder-count="3">
+          <div data-reveal="" style="border: 1.5px solid rgba(26,21,15,.18); border-radius: 22px; padding: clamp(28px, 2.6vw, 40px); display: flex; flex-direction: column; gap: 18px; height: 100%;">
+            <span style="display: inline-flex; width: 48px; height: 48px; border-radius: 13px; align-items: center; justify-content: center; background: rgba(238,97,88,.14); color: var(--accent);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="{{ b.icon }}"></path></svg>
+            </span>
+            <h3 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.08; margin: 0;">{{ b.title }}</h3>
+            <p style="margin: 0; font-size: 16px; line-height: 1.55; opacity: .8;">{{ b.body }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="plans" style="padding: clamp(70px, 11vh, 150px) clamp(20px, 5vw, 64px); border-top: 1px solid rgba(26,21,15,.14);">
+    <div style="max-width: 1280px; margin: 0 auto;">
+      <h2 data-reveal="" style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(34px, 5.2vw, 76px); line-height: 1.02; letter-spacing: -0.015em; margin: 0 0 clamp(40px, 7vh, 76px); max-width: 1500px">
+        Choose the right plan to help your business grow.
+      </h2>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: clamp(18px, 2vw, 26px); align-items: start;">
+        <sc-for list="{{ plans }}" as="plan" hint-placeholder-count="3">
+          <div data-reveal="" style="position: relative; display: flex; flex-direction: column; height: 100%; border-radius: 22px; padding: clamp(28px, 2.4vw, 40px); background: {{ plan.cardBg }}; color: {{ plan.cardFg }}; border: 1.5px solid {{ plan.cardBorder }};">
+            <sc-if value="{{ plan.popular }}" hint-placeholder-val="{{ false }}">
+              <div style="position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%); display: inline-flex; align-items: center; gap: 6px; background: var(--accent); color: #fff; padding: 7px 15px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; box-shadow: 0 4px 14px rgba(0,0,0,.20);">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.7 5.9 6.4.7-4.8 4.3 1.3 6.3L12 16.9 6.4 19.9l1.3-6.3L2.9 9.1l6.4-.7z"></path></svg>
+                Most Popular
+              </div>
+            </sc-if>
+            <div style="display: flex; align-items: center; gap: 11px;">
+              <span style="display: inline-flex; width: 30px; height: 30px; border-radius: 8px; align-items: center; justify-content: center; background: {{ plan.iconBg }}; color: var(--accent);">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="{{ plan.iconPath }}"></path></svg>
+              </span>
+              <span style="font-size: 19px; font-weight: 700; letter-spacing: -0.01em;">{{ plan.name }}</span>
+            </div>
+
+            <div style="margin-top: clamp(22px, 2.4vw, 32px); display: flex; align-items: baseline; gap: 12px;">
+              <span style="font-size: 16px; text-decoration: line-through; opacity: .45;">{{ plan.was }}</span>
+            </div>
+            <div style="margin-top: 4px; font-family: 'Instrument Serif', serif; font-size: clamp(42px, 4vw, 56px); line-height: 1; letter-spacing: -0.01em;">{{ plan.now }}</div>
+
+            <p style="margin: 16px 0 0; font-size: 16px; font-weight: 600; line-height: 1.45;">{{ plan.blurb }}</p>
+
+            <div style="margin-top: clamp(20px, 2.2vw, 28px); font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; opacity: .5;">What's included</div>
+
+            <ul style="list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 11px;">
+              <sc-for list="{{ plan.items }}" as="feat" hint-placeholder-count="8">
+                <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 15.5px; line-height: 1.4;">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px; flex-shrink: 0;"><path d="M20 6 9 17l-5-5"></path></svg>
+                  <span>{{ feat }}</span>
+                </li>
+              </sc-for>
+            </ul>
+
+            <sc-if value="{{ plan.hasMore }}" hint-placeholder-val="{{ false }}">
+              <details style="margin-top: 4px;">
+                <summary style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 0 2px; font-size: 15px; font-weight: 600; color: var(--accent);">
+                  <svg class="chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+                  <span>More</span>
+                </summary>
+                <ul class="acc-body" style="list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 11px;">
+                  <sc-for list="{{ plan.more }}" as="feat" hint-placeholder-count="3">
+                    <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 15.5px; line-height: 1.4;">
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px; flex-shrink: 0;"><path d="M20 6 9 17l-5-5"></path></svg>
+                      <span>{{ feat }}</span>
+                    </li>
+                  </sc-for>
+                </ul>
+              </details>
+            </sc-if>
+
+            <div style="flex-grow: 1;"></div>
+            <a href="https://cal.com/nareshmeetei/15min" target="_blank" rel="noopener" style="margin-top: clamp(24px, 2.4vw, 34px); display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; padding: 15px 22px; border-radius: 999px; font-size: 14.5px; font-weight: 700; letter-spacing: .01em; background: {{ plan.btnBg }}; color: {{ plan.btnFg }}; border: 1.5px solid {{ plan.btnBorder }}; transition: transform .25s ease;" style-hover="transform: translateY(-2px);">
+              Invest to grow your business
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </a>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADD-ONS -->
+  <section style="background: var(--ink); color: var(--paper); padding: clamp(72px, 12vh, 150px) clamp(20px, 5vw, 64px);">
+    <div style="max-width: 1000px; margin: 0 auto;">
+      <h2 data-reveal="" style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(34px, 6vw, 84px); line-height: 1.0; letter-spacing: -0.015em; margin: 0 0 clamp(34px, 5vh, 56px);">
+        Add-ons
+      </h2>
+
+      <div data-reveal="">
+        <sc-for list="{{ addons }}" as="item" hint-placeholder-count="5">
+          <details style="border-top: 1px solid rgba(240,234,224,.18);">
+            <summary style="display: flex; align-items: center; gap: 16px; padding: clamp(20px, 2.6vh, 28px) 0;">
+              <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+              <span style="flex: 1; font-size: clamp(17px, 1.7vw, 22px); font-weight: 600; letter-spacing: -0.01em;">{{ item.title }}<span style="opacity: .6; font-weight: 500;"> — {{ item.price }}</span></span>
+            </summary>
+            <div class="acc-body" style="padding: 0 0 clamp(24px, 3vh, 34px) 32px; max-width: 64ch;">
+              <p style="margin: 0 0 18px; font-size: clamp(15px, 1.3vw, 17px); line-height: 1.6; opacity: .82;">{{ item.blurb }}</p>
+              <ul style="list-style: none; margin: 0; padding: 0; display: grid; gap: 10px;">
+                <sc-for list="{{ item.items }}" as="f" hint-placeholder-count="4">
+                  <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 15px; line-height: 1.4;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px; flex-shrink: 0;"><path d="M20 6 9 17l-5-5"></path></svg>
+                    <span style="opacity: .92;">{{ f }}</span>
+                  </li>
+                </sc-for>
+              </ul>
+              <p style="margin: 18px 0 0; font-size: 15px; line-height: 1.5;"><span style="font-weight: 700;">Best For:</span> <span style="opacity: .82;">{{ item.bestFor }}</span></p>
+              <sc-if value="{{ item.note }}" hint-placeholder-val="">
+                <p style="margin: 12px 0 0; font-size: 14.5px; line-height: 1.5; opacity: .6; font-style: italic;">{{ item.note }}</p>
+              </sc-if>
+            </div>
+          </details>
+        </sc-for>
+        <div style="border-top: 1px solid rgba(240,234,224,.18);"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT MAKES THIS DIFFERENT -->
+  <section style="padding: clamp(70px, 11vh, 150px) clamp(20px, 5vw, 64px);">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h2 data-reveal="" style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(34px, 5.4vw, 78px); line-height: 1.02; letter-spacing: -0.015em; margin: 0 0 clamp(28px, 4vh, 40px); max-width: 1000px">
+        What makes this different?
+      </h2>
+      <div data-reveal="" style="max-width: 60ch; margin-bottom: clamp(40px, 6vh, 64px);">
+        <p style="font-size: clamp(17px, 1.5vw, 21px); line-height: 1.55; margin: 0 0 14px; opacity: .85; max-width: 1000px; width: 1000px">Most designers only create logos. I help you build world class brands that customers remember and trust.</p>
+        
+      </div>
+
+      <p data-reveal="" style="font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; opacity: .5; margin: 0 0 24px;">Every project combines</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(16px, 2vw, 28px);">
+        <sc-for list="{{ different }}" as="d" hint-placeholder-count="6">
+          <div data-reveal="" style="display: flex; align-items: flex-start; gap: 16px; padding: 22px 0; border-top: 1px solid rgba(26,21,15,.16);">
+            <span style="font-family: 'Instrument Serif', serif; font-size: 30px; line-height: 1; color: var(--accent); min-width: 30px">{{ d.no }}</span>
+            <p style="margin: 0; font-size: clamp(16px, 1.4vw, 19px); line-height: 1.5;"><span style="font-weight: 700;">{{ d.term }}</span> <span style="opacity: .78;">{{ d.desc }}</span></p>
+          </div>
+        </sc-for>
+      </div>
+
+      <div data-reveal="" style="margin-top: clamp(44px, 7vh, 76px); max-width: 28ch;">
+        <p style="font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; opacity: .5; margin: 0 0 14px;">The goal is simple</p>
+        <p style="font-family: 'Instrument Serif', serif; font-size: clamp(24px, 3vw, 42px); line-height: 1.18; margin: 0; max-width: 1000px; width: 1000px">Create a brand that looks professional, feels <span style="font-style: italic; color: var(--accent);">memorable,</span> and helps you achieve long-term growth.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="padding: clamp(70px, 11vh, 150px) clamp(20px, 5vw, 64px); border-top: 1px solid rgba(26,21,15,.14);">
+    <div style="max-width: 1000px; margin: 0 auto;">
+      <h2 data-reveal="" style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(34px, 6vw, 84px); line-height: 1.0; letter-spacing: -0.015em; margin: 0 0 clamp(34px, 5vh, 56px); max-width: 1000px">
+        Some frequently asked questions
+      </h2>
+
+      <div data-reveal="">
+        <sc-for list="{{ faqs }}" as="item" hint-placeholder-count="4">
+          <details style="border-top: 1px solid rgba(26,21,15,.16);">
+            <summary style="display: flex; align-items: center; gap: 16px; padding: clamp(20px, 2.6vh, 28px) 0;">
+              <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+              <span style="flex: 1; font-size: clamp(17px, 1.7vw, 22px); font-weight: 600; letter-spacing: -0.01em;">{{ item.q }}</span>
+            </summary>
+            <div class="acc-body" style="padding: 0 0 clamp(22px, 2.8vh, 30px) 32px; max-width: 62ch; display: grid; gap: 8px;">
+              <sc-for list="{{ item.lines }}" as="line" hint-placeholder-count="2">
+                <p style="margin: 0; font-size: clamp(15px, 1.3vw, 17px); line-height: 1.6; opacity: .8;">{{ line }}</p>
+              </sc-for>
+            </div>
+          </details>
+        </sc-for>
+        <div style="border-top: 1px solid rgba(26,21,15,.16);"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section style="background: var(--ink); color: var(--paper); padding: clamp(72px, 12vh, 150px) clamp(20px, 5vw, 64px);">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h2 data-reveal="" style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(34px, 5.4vw, 80px); line-height: 1.0; letter-spacing: -0.015em; margin: 0 0 clamp(40px, 6vh, 72px); max-width: 1000px">
+        Trusted by other businesses like yours
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(18px, 2vw, 26px);">
+        <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="3">
+          <div data-reveal="" style="border: 1.5px solid rgba(240,234,224,.18); border-radius: 22px; padding: clamp(28px, 2.6vw, 38px); display: flex; flex-direction: column; height: 100%;">
+            <div style="display: flex; gap: 4px; color: var(--accent); margin-bottom: 22px;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.7 5.9 6.4.7-4.8 4.3 1.3 6.3L12 16.9 6.4 19.9l1.3-6.3L2.9 9.1l6.4-.7z"></path></svg>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.7 5.9 6.4.7-4.8 4.3 1.3 6.3L12 16.9 6.4 19.9l1.3-6.3L2.9 9.1l6.4-.7z"></path></svg>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.7 5.9 6.4.7-4.8 4.3 1.3 6.3L12 16.9 6.4 19.9l1.3-6.3L2.9 9.1l6.4-.7z"></path></svg>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.7 5.9 6.4.7-4.8 4.3 1.3 6.3L12 16.9 6.4 19.9l1.3-6.3L2.9 9.1l6.4-.7z"></path></svg>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.7 5.9 6.4.7-4.8 4.3 1.3 6.3L12 16.9 6.4 19.9l1.3-6.3L2.9 9.1l6.4-.7z"></path></svg>
+            </div>
+            <p style="font-family: 'Instrument Serif', serif; font-size: clamp(20px, 1.9vw, 26px); line-height: 1.3; margin: 0 0 24px;">"{{ t.quote }}"</p>
+            <div style="flex-grow: 1;"></div>
+            <div style="font-size: 15px; font-weight: 700;">{{ t.name }}</div>
+            <div style="font-size: 14px; opacity: .65; margin-top: 2px;">{{ t.role }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section style="padding: clamp(72px, 12vh, 150px) clamp(20px, 5vw, 64px);">
+    <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: start;">
+      <div data-reveal="">
+        <x-import component-from-global-scope="image-slot" id="founder" src="data:image/webp;base64,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" shape="circle" placeholder="Drop your photo (Me 4.png)" style="display: block; margin: 0 auto; width: 240px; height: 240px;" hint-size="240px,240px"></x-import>
+      </div>
+      <div data-reveal="">
+        <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(34px, 5vw, 64px); line-height: 1.0; letter-spacing: -0.015em; margin: 0 0 10px;">Naresh Meetei</h2>
+        <p style="font-size: 15px; font-weight: 600; letter-spacing: .02em; color: var(--accent); margin: 0 0 28px;">Designer &nbsp;·&nbsp; Brand Strategist &nbsp;·&nbsp; Digital Marketer</p>
+        <p style="font-size: clamp(16px, 1.4vw, 19px); line-height: 1.6; margin: 0 0 18px; opacity: .85;">
+          I help businesses transform complex ideas into simple, memorable brands that people trust. I've worked with some top brands like Innisfree, Royal Enfield, BSNL, BLK Hospitals, Aakash Institute, Babina, Classic, YVU Dairy, Keithel Express and more.
+        </p>
+        <p style="font-size: clamp(16px, 1.4vw, 19px); line-height: 1.6; margin: 0 0 32px; opacity: .85;">
+          My focus is creating professional and memorable brands that look modern, communicate clearly, and support long-term growth.
+        </p>
+        <a href="https://nareshmeetei.framer.website/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 11px; background: var(--accent); color: #fff; text-decoration: none; padding: 14px 24px; border-radius: 999px; font-size: 15px; font-weight: 600; letter-spacing: .01em; margin-bottom: 16px; transition: transform .25s ease;" style-hover="transform: translateY(-2px);">
+          See some of my work
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </a>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+          <a href="https://www.linkedin.com/in/nareshmeetei/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 9px; padding: 12px 18px; border: 1.5px solid rgba(26,21,15,.24); border-radius: 999px; text-decoration: none; color: var(--ink); font-size: 14.5px; font-weight: 600; transition: border-color .25s ease, color .25s ease;" style-hover="border-color: var(--accent); color: var(--accent);">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"></rect><path d="M8 11v5M8 8v.01M12 16v-3a2 2 0 0 1 4 0v3"></path></svg>
+            LinkedIn
+          </a>
+          <a href="https://x.com/NareshMeetei11" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 9px; padding: 12px 18px; border: 1.5px solid rgba(26,21,15,.24); border-radius: 999px; text-decoration: none; color: var(--ink); font-size: 14.5px; font-weight: 600; transition: border-color .25s ease, color .25s ease;" style-hover="border-color: var(--accent); color: var(--accent);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16M20 4L4 20"></path></svg>
+            X / Twitter
+          </a>
+          <a href="https://wa.me/qr/IW7UT43DL5OHC1" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 9px; padding: 12px 18px; border: 1.5px solid rgba(26,21,15,.24); border-radius: 999px; text-decoration: none; color: var(--ink); font-size: 14.5px; font-weight: 600; transition: border-color .25s ease, color .25s ease;" style-hover="border-color: var(--accent); color: var(--accent);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.5 7.5L3 21l2-5.5A8.5 8.5 0 1 1 21 11.5z"></path><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1c-1-.5-2-1.5-2.5-2.5l1-1-1-2z"></path></svg>
+            WhatsApp · 9354008374
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section style="padding: 0 clamp(16px, 3vw, 40px) clamp(40px, 7vh, 90px);">
+    <div data-reveal="" style="max-width: 1280px; margin: 0 auto; background: var(--accent); color: #fff; border-radius: 28px; padding: clamp(56px, 9vw, 130px) clamp(28px, 6vw, 88px); text-align: center;">
+      <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(34px, 6vw, 96px); line-height: 1.0; letter-spacing: -0.02em; margin: 0 auto 36px; max-width: 1500px">
+        Ready to grow your brand by making it <span style="font-style: italic;">world-class and memorable?</span>
+      </h2>
+      <a href="https://cal.com/nareshmeetei/15min" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 12px; background: var(--ink); color: var(--paper); text-decoration: none; padding: 18px 30px; border-radius: 999px; font-size: 15.5px; font-weight: 600; letter-spacing: .02em; transition: transform .25s ease;" style-hover="transform: translateY(-2px);">
+        Invest to grow your business
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="padding: clamp(36px, 6vh, 64px) clamp(20px, 5vw, 64px); border-top: 1px solid rgba(26,21,15,.14); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px;">
+    <div style="display: flex; align-items: center; gap: 11px; width: 148px; height: 31px">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.9" stroke-linecap="round" style="width: 25px; height: 25px"><path d="M12 3v18M3.8 7.5l16.4 9M20.2 7.5L3.8 16.5" style="width: 20px; height: 22px"></path></svg>
+      <span style="font-family: 'Instrument Serif', serif; font-size: 19px;">BrandWork&nbsp;</span>
+    </div>
+    <span style="font-size: 13px; letter-spacing: .03em; opacity: .55;">World class branding studio for Northeast India</span>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;heroVariant&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;monument&quot;, &quot;poster&quot;], &quot;default&quot;: &quot;monument&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;accentColor&quot;: { &quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#EE6158&quot;, &quot;tsType&quot;: &quot;string&quot; }
+}">
+class Component extends DCLogic {
+  renderVals() {
+    const variant = this.props.heroVariant || 'monument';
+    const ink = '#1A150F', paper = '#F0EAE0';
+    const sprout = 'M12 22V12M12 12c0-3-2-5-5-5-1 0 0 3 2 4s3 1 3 1zM12 12c0-3 2-5 5-5 1 0 0 3-2 4s-3 1-3 1z';
+    const rocket = 'M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09zM12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2zM9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5';
+    const crown = 'M4 18h16M4 18l-1.5-9 5 4 4.5-7 4.5 7 5-4L20 18';
+
+    const plans = [
+      {
+        name: 'Local Starter', iconPath: sprout,
+        was: '\u20B915,000', now: '\u20B96,000', popular: false,
+        blurb: 'Perfect for new businesses, local shops, cafes, home businesses, etc.',
+        items: ['PNG & JPG Files', 'Brand Mission Statement', 'Facebook Cover Design', 'Social Media Profile Image', 'Mini Brand Guidelines', 'Typography Selection', 'Brand Color Palette', '1 Revision', '1 Logo Concept'],
+        more: []
+      },
+      {
+        name: 'Business Growth', iconPath: rocket,
+        was: '\u20B950,000', now: '\u20B913,000', popular: true,
+        blurb: 'Best for serious businesses ready to grow and attract more customers.',
+        items: ['2 Logo Concepts Options', '2 Revisions', 'Brand Color Palette', 'Typography System', 'Brand Guidelines', 'Business Card Design', 'Social Media Kit'],
+        more: ['Mini Brand Strategy', '5 Social Media Templates', 'Packaging Label or Menu Design', '30-Minute Brand Strategy Session']
+      },
+      {
+        name: 'Market Leader', iconPath: crown,
+        was: '\u20B9100,000', now: '\u20B930,000', popular: false,
+        blurb: 'Perfect for ambitious businesses that want to dominate their category.',
+        items: ['3 Logo Concepts Options', '5 Revisions', 'Brand Color Palette', 'Typography System', 'Brand Stationeries', 'Brand Strategy Workshop', 'Competitor Analysis', 'Brand Positioning'],
+        more: ['Brand Messaging', 'Tagline Development', '10 Social Media Templates', 'Packaging System Design', 'Advanced Brand Guidelines & Strategy', 'Shop Signage Mockups', 'Launch Campaign Assets', '90-Minute Consultation & Brand Strategy Session']
+      }
+    ];
+
+    const styledPlans = plans.map((p) => {
+      const popular = p.popular;
+      return Object.assign({}, p, {
+        hasMore: p.more.length > 0,
+        cardBg: popular ? ink : 'transparent',
+        cardFg: popular ? paper : ink,
+        cardBorder: popular ? ink : 'rgba(26,21,15,.18)',
+        iconBg: popular ? 'rgba(238,97,88,.18)' : 'rgba(238,97,88,.14)',
+        btnBg: popular ? '#EE6158' : 'transparent',
+        btnFg: popular ? '#fff' : ink,
+        btnBorder: popular ? '#EE6158' : 'rgba(26,21,15,.28)'
+      });
+    });
+
+    const addons = [
+      {
+        title: 'Website Design & Development', price: 'Starting at \u20B920,000',
+        blurb: 'Give customers a place to learn about your business, view your products or services, and contact you anytime.',
+        items: ['Mobile-Friendly Website', 'WhatsApp Integration', 'Contact Form', 'Google Maps Integration', 'Basic SEO Setup', 'Domain & Hosting Guidance'],
+        bestFor: 'Any business that wants to look professional and be found online.',
+        note: 'Website management starts from \u20B95,000/month.'
+      },
+      {
+        title: 'Social Media Brand Kit', price: 'Starting at \u20B95,000',
+        blurb: 'Look professional and consistent across Instagram and Facebook.',
+        items: ['10 Custom Social Media Templates', '5 Story Templates', 'Highlight Covers', 'Profile Optimization'],
+        bestFor: 'Businesses that actively use social media to attract customers.',
+        note: ''
+      },
+      {
+        title: 'Packaging & Label Design', price: 'Starting at \u20B97,000',
+        blurb: 'Make your products look more premium and trustworthy.',
+        items: ['Product Label Design', 'Packaging Mockups', 'Print-Ready Files', 'Barcode & Information Layout Support'],
+        bestFor: 'Food products, handmade products, cosmetics, clothing brands, and local manufacturers.',
+        note: ''
+      },
+      {
+        title: 'Brand Naming & Tagline', price: 'Starting at \u20B98,000',
+        blurb: 'Start your business with a name people can easily remember and a message people can understand.',
+        items: ['Business Name Discovery Session', '10\u201315 Business Name Options', 'Name Shortlisting Support', 'Brand Tagline Creation', 'Brand Story', 'Clear Brand Message', 'Brand Voice Direction', 'Basic Name Availability Check'],
+        bestFor: 'New businesses, startups, product launches, and businesses planning a rebrand.',
+        note: ''
+      },
+      {
+        title: 'Monthly Design Partner', price: '\u20B98,000/month',
+        blurb: 'Your on-call professional senior designer for all your monthly branding and design needs.',
+        items: ['Up to 5 Design Requests Per Month', 'Social Media Graphics', 'Posters & Flyers', 'Menu Updates', 'Packaging Updates', 'Signboard Updates', 'Business Card Updates', 'Priority Support', 'Deliver in 48\u201372 Hours', '30-Minute Consultation'],
+        bestFor: 'Businesses that need regular design support without hiring a full-time designer.',
+        note: ''
+      }
+    ];
+
+    const faqs = [
+      { q: 'How long does a project take?', lines: ['Local Starter: 5\u20137 Days', 'Business Growth: 5\u201310 Days', 'Market Leader: 1\u20132 Weeks'] },
+      { q: 'When do I make the payment?', lines: ['You make the full payment in advance before the project starts. The work starts only after the payment is done.'] },
+      { q: 'Can I request revisions?', lines: ['Absolutely.', "Each package includes revision rounds to make sure you're happy with the final result."] },
+      { q: 'Do you work with businesses outside Manipur?', lines: ['Yes.', 'I work with businesses across India and internationally.'] }
+    ];
+
+    const stats = [
+      { num: '0.5s', label: 'People form first impressions in as little as half a second.' },
+      { num: '50%', label: 'Around half of customers are more likely to buy from brands they recognise.' },
+      { num: '20–30%', label: 'Businesses with consistent branding report revenue growth of 20–30% or more.' }
+    ];
+
+    const losing = [
+      'Customers to competitors who look more trustworthy',
+      'Sales from people who visit but never contact you',
+      'Higher prices because customers compare you on price instead of value',
+      "Word-of-mouth referrals because your business isn't memorable",
+      'Repeat customers who could have come back again and again'
+    ];
+
+    const benefits = [
+      { title: 'Look Professional', body: 'Make a strong first impression that builds strong trust with your customers.', icon: 'M12 3l7 3v5c0 4-3 7-7 8-4-1-7-4-7-8V6l7-3zM9 12l2 2 4-4' },
+      { title: 'Stand Out From Crowd', body: 'Position your business above the competition with confidence.', icon: 'M12 19V5M5 12l7-7 7 7' },
+      { title: 'Grow Faster', body: 'Build a powerful brand your customers remember, trust, and recommend.', icon: 'M3 17l6-6 4 4 7-7M21 8v5h-5' }
+    ];
+
+    const different = [
+      { no: '01', term: 'Deep Research', desc: 'to understand what makes your business unique' },
+      { no: '02', term: 'Strategy', desc: 'to create a clear direction for long-term growth' },
+      { no: '03', term: 'Design', desc: 'to make your brand look professional and build trust' },
+      { no: '04', term: 'Brand Positioning', desc: 'to stand out from competitors' },
+      { no: '05', term: 'Customer Psychology', desc: 'to persuade and attract the right customers' },
+      { no: '06', term: 'Local Market Understanding', desc: 'to connect with your audience more effectively' }
+    ];
+
+    const testimonials = [
+      { quote: 'Finally got my online boutique brand upgraded to a more premium look and saw immediate results.', name: 'Ruthie', role: 'Founder of Lillie by Ruthie' },
+      { quote: 'Online orders increased by 33% after implementing the recommended strategies.', name: 'Marathon L', role: 'Founder of Green Neko' },
+      { quote: 'Professional, quick, and effective. The design and strategies made Keithel Express a trusted brand and showed results.', name: 'Lenin', role: 'Co-founder of Keithel Express' }
+    ];
+
+    return {
+      showMonument: variant !== 'poster',
+      showPoster: variant === 'poster',
+      heroPoints: ['trust you', 'remember you', 'choose you over competitors every time'],
+      stats, losing, benefits,
+      plans: styledPlans,
+      addons, different, faqs, testimonials
+    };
+  }
+
+  componentDidMount() {
+    if (this.props.accentColor) {
+      document.documentElement.style.setProperty('--accent', this.props.accentColor);
+    }
+    const nav = document.querySelector('[data-nav]');
+    const onScroll = () => {
+      if (!nav) return;
+      if ((window.scrollY || 0) > 40) {
+        nav.style.background = 'rgba(240,234,224,0.86)';
+        nav.style.backdropFilter = 'blur(12px)';
+        nav.style.webkitBackdropFilter = 'blur(12px)';
+        nav.style.borderBottomColor = 'rgba(26,21,15,0.12)';
+      } else {
+        nav.style.background = 'transparent';
+        nav.style.backdropFilter = 'none';
+        nav.style.webkitBackdropFilter = 'none';
+        nav.style.borderBottomColor = 'transparent';
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    this._onScroll = onScroll;
+
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.style.opacity = '1';
+            e.target.style.transform = 'none';
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+      const vh = window.innerHeight;
+      els.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.92) return;
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1)';
+        io.observe(el);
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+  }
+}
+</script>
+</body>
+</html>
