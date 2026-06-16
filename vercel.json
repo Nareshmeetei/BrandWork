@@ -1,4 +1,14 @@
 {
-  "rootDirectory": "build-a-brand-website/project",
-  "outputDirectory": "."
+  "builds": [
+    {
+      "src": "build-a-brand-website/project/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/build-a-brand-website/project/$1"
+    }
+  ]
 }
