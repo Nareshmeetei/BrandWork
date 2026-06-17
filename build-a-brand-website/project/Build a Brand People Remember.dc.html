@@ -31,11 +31,15 @@
     .about-grid { grid-template-columns: 1fr !important; }
     .nav-cta-arrow { display: none !important; }
     .nav-cta { font-size: 12px !important; letter-spacing: .025em !important; }
+    nav[data-nav].mobile-docked { top: auto !important; bottom: 0; border-top: 1px solid rgba(26,21,15,.12); }
+    image-slot#founder { width: 120px !important; height: 120px !important; }
+    .plans-grid { gap: 28px !important; }
+    .site-root { padding-bottom: 72px; }
   }
 </style>
 </helmet>
 
-<div style="background: var(--paper); color: var(--ink); font-family: 'Hanken Grotesk', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; min-height: 100vh;">
+<div class="site-root" style="background: var(--paper); color: var(--ink); font-family: 'Hanken Grotesk', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; min-height: 100vh;">
 
   <nav data-nav="" style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 18px clamp(20px, 5vw, 64px); border-bottom: 1px solid transparent; transition: background .35s ease, border-color .35s ease;">
     <a href="#top" style="display: flex; align-items: center; gap: 11px; text-decoration: none; color: var(--ink);">
@@ -207,7 +211,7 @@
         Choose the right plan to help your business grow.
       </h2>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: clamp(18px, 2vw, 26px); align-items: start;">
+      <div class="plans-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: clamp(18px, 2vw, 26px); align-items: start;">
         <sc-for list="{{ plans }}" as="plan" hint-placeholder-count="3">
           <div data-reveal="" style="position: relative; display: flex; flex-direction: column; height: 100%; border-radius: 22px; padding: clamp(28px, 2.4vw, 40px); background: {{ plan.cardBg }}; color: {{ plan.cardFg }}; border: 1.5px solid {{ plan.cardBorder }};">
             <sc-if value="{{ plan.popular }}" hint-placeholder-val="{{ false }}">
@@ -566,17 +570,21 @@ class Component extends DCLogic {
     const nav = document.querySelector('[data-nav]');
     const onScroll = () => {
       if (!nav) return;
-      if ((window.scrollY || 0) > 40) {
+      const sy = window.scrollY || 0;
+      const mobile = window.innerWidth <= 767;
+      const docked = mobile && sy > 10;
+      if (sy > 40) {
         nav.style.background = 'rgba(240,234,224,0.86)';
         nav.style.backdropFilter = 'blur(12px)';
         nav.style.webkitBackdropFilter = 'blur(12px)';
-        nav.style.borderBottomColor = 'rgba(26,21,15,0.12)';
+        nav.style.borderBottomColor = docked ? 'transparent' : 'rgba(26,21,15,0.12)';
       } else {
-        nav.style.background = 'transparent';
-        nav.style.backdropFilter = 'none';
-        nav.style.webkitBackdropFilter = 'none';
+        nav.style.background = docked ? 'rgba(240,234,224,0.94)' : 'transparent';
+        nav.style.backdropFilter = docked ? 'blur(12px)' : 'none';
+        nav.style.webkitBackdropFilter = docked ? 'blur(12px)' : 'none';
         nav.style.borderBottomColor = 'transparent';
       }
+      nav.classList.toggle('mobile-docked', docked);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
